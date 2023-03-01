@@ -5,121 +5,29 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>usuarios y publicaciones</title>
+    <link rel="stylesheet" href="/Style.css">
     <!-- separar el js de usuarios y posts
     investigar sass
     -->
     <script src="/Usuarios.js"></script>
 </head>
 <body>
-    <style>
-        *{
-            font-family: Arial, sans-serif;
-        }
-        form {
-            font-family: Arial, sans-serif;
-            background-color: #f2f2f2;
-            padding: 20px;
-            border-radius: 5px;
-            margin: auto;
-            width: 50%;
-        }
-        #nav{
-            font-family: Arial, sans-serif;
-            background-color: #f2f2f2;
-            padding: 20px;
-            border-radius: 5px;
-            margin: auto;
-            width: 50%;
-        }
-        #Buscar{
-            font-family: Arial, sans-serif;
-            background-color: #f2f2f2;
-            padding: 20px;
-            border-radius: 5px;
-            margin: auto;
-            width: 50%;
-        }
-        #ListarUsuarios{
-            font-family: Arial, sans-serif;
-            background-color: #f2f2f2;
-            padding: 20px;
-            border-radius: 5px;
-            margin: auto;
-            width: 50%;
-        }
-        #info{
-            font-family: Arial, sans-serif;
-            background-color: #f2f2f2;
-            padding: 20px;
-            border-radius: 5px;
-            margin: auto;
-            width: 50%;
-        }
-        label {
-            font-weight: bold;
-            display: block;
-            margin-bottom: 5px;
-        }
 
-        input{
-            padding: 10px;
-            border-radius: 5px;
-            border: none;
-            width: 30%;
-            margin-bottom: 10px;
-        }
-
-        button{
-            background-color: #4CAF50;
-            color: white;
-            font-weight: bold;
-        }
-
-        button:hover {
-            background-color: #3e8e41;
-        }
-
-        input:focus {
-            outline: none;
-            border: 2px solid #555;
-        }
-
-        #street,
-        #suit,
-        #city,
-        #zipcode,
-        #lat,
-        #lng {
-            width: 23%;
-            display: inline-block;
-            margin-right: 10px;
-        }
-
-        @media only screen and (max-width: 600px) {
-        #street,
-        #suit,
-        #city,
-        #zipcode,
-        #lat,
-        #lng {
-            width: 100%;
-            margin-right: 0;
-        }
-        }
-    </style>
     <header>
         <h1>Usuarios y publicaciones</h1>
     </header>
     <section id="nav">
         <nav class="nav-princ contenedor">
-            <a href="#">Registro</a>
-            <a href="#">Busqueda</a>
-            <a href="#">Listar Usuarios</a>
+            <a href="#agregarS">Registro</a>
+            <a href="#Buscar">Busqueda</a>
+            <a href="#ListarUsuarios">Listado de Usuarios</a>
+            <a href="#posts">Posts de los usuarios</a>
         </nav>
     </section>
 
     <section id="agregarS">
         <form id="formulario">
+            <h2>Formulario de Registro</h2><br>
             <label for="name">Informacion del usuario:</label><br>
             <input type="text" id="name" name="name" placeholder="Nombre">
             <input type="text" id="Usname" name="Usname" placeholder="Username">
@@ -145,6 +53,7 @@
     </section>
 
     <section id="Buscar">
+        <h2>Buscar Usuarios</h2>
         <label for="BuscarUsr">
             Buscar usuario: <input type="text" id="BuscarUsr" placeholder="UserName">
         </label>
@@ -154,19 +63,37 @@
     <section id="ListarUsuarios">
         <label for="MostrarUsers">Mostrar lista de usurarios</label>
         <button id="MostrarUsers">Listar</button>
-    </section>
-        
         <div id="info">
             <!-- Buscar como organizar los datos de un array en una tabla -->
-            <table>
-                <tr> Datos de usuario
-                    <th>Nombre</th>
-                    <th>UserName</th>
-                    <th>Correo</th>
-                    <th>Calle</th>
-                </tr>
+            <table id="tabla-usuarios">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>User name</th>
+                        <th>Email</th>
+                        <th>Teléfono</th>
+                        <th>Sitio web</th>
+                        <th>Dirección</th>
+                        <th>Compañía</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
             </table>
         </div>
+    </section>
+
+        <section id="posts">
+            <h2>Posts de los usuarios</h2>
+            <h3>Seleccione el id del usuario:</h3>
+            <select name="OpcUsrs">
+                <option>opcion1</option>
+                <option>opcion2</option>
+                <option>opcion3</option>
+            </select>
+        </section>
+        
         <script>
             //Agregar Usuario nuevo
             const Luser = new Usuarios();
@@ -189,6 +116,7 @@
                 let NuevoUsr = new UserInf(name, username, email, street, suit, city, zipcode, lat, lng, phone, website,Cname, eslogan, Cbs);
                 Luser.AgregarUsr(NuevoUsr);
                 console.log(Luser);
+
             })
             console.log(Luser);
 
@@ -203,10 +131,25 @@
                     document.getElementById("info").innerHTML += UsrEnc.MostrarUser();
                 }
             })
+            
             //Mostrar listado de usuarios
             const ListarUsrs = document.getElementById("MostrarUsers")
             ListarUsrs.addEventListener("click",()=>{
-                document.getElementById("info").innerHTML += Usuarios.MostrarUser();
+                const tabla = document.getElementById('tabla-usuarios');
+                const tbody = tabla.getElementsByTagName('tbody')[0];
+
+                for (let i = 0; i < Usuarios.datos.length; i++) {
+                    const usuario = Usuarios.datos[i];
+                    const fila = tbody.insertRow(i);
+                        fila.insertCell(0).innerHTML = usuario.id;
+                        fila.insertCell(1).innerHTML = usuario.name;
+                        fila.insertCell(2).innerHTML = usuario.username;
+                        fila.insertCell(3).innerHTML = usuario.email;
+                        fila.insertCell(4).innerHTML = usuario.phone;
+                        fila.insertCell(5).innerHTML = usuario.website;
+                        fila.insertCell(6).innerHTML = usuario.address.street + ', ' + usuario.address.suite + ', ' + usuario.address.city + ', ' + usuario.address.zipcode;
+                        fila.insertCell(7).innerHTML = usuario.company.name + ' - ' + usuario.company.catchPhrase + ' - ' + usuario.company.bs;
+                }
             })
         </script>
 </body>

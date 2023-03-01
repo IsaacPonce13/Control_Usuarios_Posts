@@ -1,23 +1,20 @@
 class UserInf{
     constructor(name, username, email, street, suite, city, zipcode, lat, lng, phone, website, Cname, eslogan, Cbs){
         this.id = null;
-        this.nombre ="name:" + name;
-        this.nombreUs ="username:" + username;
-        this.correo = "email:" + email;
-        this.calle = "street:"+  street;
-        this.suite = "suite:"+ suite ;
-        this.ciudad ="city:" +  city;
-        this.codigoP = "zipcode:" + zipcode ;
-        this.latitud = "lat:" + lat;
-        this.longit = "lng:" + lng;
-        this.tel = "phone:" + phone;
-        this.Sweb = "website:" + website;
-        this.comp = "name:"+ Cname;
-        this.eslogan = "catchPrase:" +  eslogan;
-        this.bsC = "bs:" + Cbs;
-    }
-    MostrarUser(){
-        return `<p>${this.id} ${this.nombre} ${this.nombreUs} ${this.correo} ${this.calle} ${this.suite} ${this.ciudad} ${this.codigoP} ${this.latitud} ${this.longit} ${this.tel} ${this.Sweb} ${this.comp} ${this.eslogan} ${this.bsC}</p>`;
+        this.nombre = name;
+        this.nombreUs = username;
+        this.correo = email;
+        this.calle = street;
+        this.suite = suite ;
+        this.ciudad = city;
+        this.codigoP = zipcode ;
+        this.latitud = lat;
+        this.longit = lng;
+        this.tel = phone;
+        this.Sweb = website;
+        this.comp = Cname;
+        this.eslogan = eslogan;
+        this.bsC = Cbs;
     }
 }
 class Usuarios{
@@ -199,14 +196,22 @@ class Usuarios{
         return null;
     }
 
-    listarUsers(){
-        let aux=""
-        for (let i = 0; i < this.datos.length; i++) {
-            aux += this.datos[i].MostrarUser();
-        }
-        return aux;
-    }
-}
+    // listarUsers(){
+    //     const tabla = document.getElementById('tabla-usuarios');
+    //     const tbody = tabla.getElementsByTagName('tbody')[0];
 
-
+    //     for (let i = 0; i < usuarios.datos.length; i++) {
+    //     const usuario = usuarios.datos[i];
+        
+    //     const fila = tbody.insertRow(i);
+    //     fila.insertCell(0).innerHTML = usuario.id;
+    //     fila.insertCell(1).innerHTML = usuario.name;
+    //     fila.insertCell(2).innerHTML = usuario.username;
+    //     fila.insertCell(3).innerHTML = usuario.email;
+    //     fila.insertCell(4).innerHTML = usuario.phone;
+    //     fila.insertCell(5).innerHTML = usuario.website;
+    //     fila.insertCell(6).innerHTML = usuario.address.street + ', ' + usuario.address.suite + ', ' + usuario.address.city + ', ' + usuario.address.zipcode;
+    //     fila.insertCell(7).innerHTML = usuario.company.name + ' - ' + usuario.company.catchPhrase + ' - ' + usuario.company.bs;
+    //     }
+    // }
 }
