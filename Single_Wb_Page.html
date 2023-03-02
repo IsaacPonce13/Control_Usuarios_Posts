@@ -50,23 +50,17 @@
             <button type="reset" id="Agregar">Enviar</button><br><br>
             <button type="reset" id="Btnreset">Reiniciar formulario</button>
         </form>
-    </section>
+    </section><br><br><br>
 
     <section id="Buscar">
         <h2>Buscar Usuarios</h2>
-        <label for="BuscarUsr">
-            Buscar usuario: <input type="text" id="BuscarUsr" placeholder="UserName">
-        </label>
-        <button type="reset" id="BuscarUsrB">Buscar</button><br><br>
-    </section>
-
-    <section id="ListarUsuarios">
-        <label for="MostrarUsers">Mostrar lista de usurarios</label>
-        <button id="MostrarUsers">Listar</button>
-        <div id="info">
-            <!-- Buscar como organizar los datos de un array en una tabla -->
-            <table id="tabla-usuarios">
-                    <thead>
+        <form>
+            <label for="BuscarUsr">
+                Buscar usuario: <input type="text" id="BuscarUsr" placeholder="UserName">
+            </label>
+            <button type="reset" id="BuscarUsrB">Buscar</button><br><br>
+            <table id="tabla_Src">
+                <thead>
                     <tr>
                         <th>ID</th>
                         <th>Nombre</th>
@@ -78,11 +72,32 @@
                         <th>Compañía</th>
                     </tr>
                 </thead>
-                <tbody>
-                </tbody>
+            </table>
+        </form>
+
+    </section><br><br><br>
+
+    <section id="ListarUsuarios">
+        <h2>Mostrar lista de usurarios</h2>
+        <!-- <button id="MostrarUsers">Listar</button> -->
+        <div id="info">
+            <!-- Buscar como organizar los datos de un array en una tabla -->
+            <table id="tabla-usuarios">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>User name</th>
+                        <th>Email</th>
+                        <th>Teléfono</th>
+                        <th>Sitio web</th>
+                        <th>Dirección</th>
+                        <th>Compañía</th>
+                    </tr>
+                </thead>
             </table>
         </div>
-    </section>
+    </section><br><br><br>
 
         <section id="posts">
             <h2>Posts de los usuarios</h2>
@@ -92,7 +107,7 @@
                 <option>opcion2</option>
                 <option>opcion3</option>
             </select>
-        </section>
+        </section><br><br><br>
         
         <script>
             //Agregar Usuario nuevo
@@ -124,33 +139,30 @@
             const Buscar = document.getElementById("BuscarUsrB")
             Buscar.addEventListener("click",()=>{
                 let Usrnme = document.getElementById("BuscarUsr").value;
-                let UsrEnc = Usuarios.buscarUser(Usrnme);
-                if (UsrEnc==null)
+                let UsrEnc = Luser.buscarUser(Usrnme);
+                if (UsrEnc == null)
                     alert("Este Usuario no existe")
                 else{
-                    document.getElementById("info").innerHTML += UsrEnc.MostrarUser();
+                    UsrEnc;
                 }
             })
             
             //Mostrar listado de usuarios
-            const ListarUsrs = document.getElementById("MostrarUsers")
-            ListarUsrs.addEventListener("click",()=>{
+            // const ListarUsrs = document.getElementById("MostrarUsers")
+            // ListarUsrs.addEventListener("click",()=>{
                 const tabla = document.getElementById('tabla-usuarios');
-                const tbody = tabla.getElementsByTagName('tbody')[0];
-
-                for (let i = 0; i < Usuarios.datos.length; i++) {
-                    const usuario = Usuarios.datos[i];
-                    const fila = tbody.insertRow(i);
-                        fila.insertCell(0).innerHTML = usuario.id;
-                        fila.insertCell(1).innerHTML = usuario.name;
-                        fila.insertCell(2).innerHTML = usuario.username;
-                        fila.insertCell(3).innerHTML = usuario.email;
-                        fila.insertCell(4).innerHTML = usuario.phone;
-                        fila.insertCell(5).innerHTML = usuario.website;
-                        fila.insertCell(6).innerHTML = usuario.address.street + ', ' + usuario.address.suite + ', ' + usuario.address.city + ', ' + usuario.address.zipcode;
-                        fila.insertCell(7).innerHTML = usuario.company.name + ' - ' + usuario.company.catchPhrase + ' - ' + usuario.company.bs;
-                }
-            })
+                Luser.datos.forEach(element => {
+                    tabla.innerHTML+=`
+                        <td>${element.id}</td>
+                        <td>${element.name}</td>
+                        <td>${element.username}</td>
+                        <td>${element.email}</td>
+                        <td>${element.phone}</td>
+                        <td>${element.website}</td>
+                        <td>${element.street}</td>
+                        <td>${element.Cname}</td>`
+                });
+            // })
         </script>
 </body>
 </html>

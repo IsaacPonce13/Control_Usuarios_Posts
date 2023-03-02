@@ -1,18 +1,18 @@
 class UserInf{
     constructor(name, username, email, street, suite, city, zipcode, lat, lng, phone, website, Cname, eslogan, Cbs){
         this.id = null;
-        this.nombre = name;
-        this.nombreUs = username;
-        this.correo = email;
-        this.calle = street;
+        this.name = name;
+        this.username = username;
+        this.email = email;
+        this.streer = street;
         this.suite = suite ;
         this.ciudad = city;
         this.codigoP = zipcode ;
         this.latitud = lat;
         this.longit = lng;
-        this.tel = phone;
-        this.Sweb = website;
-        this.comp = Cname;
+        this.phone = phone;
+        this.website = website;
+        this.Cname = Cname;
         this.eslogan = eslogan;
         this.bsC = Cbs;
     }
@@ -38,7 +38,7 @@ class Usuarios{
                 "phone": "1-770-736-8031 x56442",
                 "website": "hildegard.org",
                 "company": {
-                    "name": "Romaguera-Crona",
+                    "Cname": "Romaguera-Crona",
                     "catchPhrase": "Multi-layered client-server neural-net",
                     "bs": "harness real-time e-markets"
                 }
@@ -61,7 +61,7 @@ class Usuarios{
             "phone": "010-692-6593 x09125",
             "website": "anastasia.net",
             "company": {
-            "name": "Deckow-Crist",
+            "Cname": "Deckow-Crist",
             "catchPhrase": "Proactive didactic contingency",
             "bs": "synergize scalable supply-chains"
             }
@@ -84,7 +84,7 @@ class Usuarios{
             "phone": "1-463-123-4447",
             "website": "ramiro.info",
             "company": {
-            "name": "Romaguera-Jacobson",
+            "Cname": "Romaguera-Jacobson",
             "catchPhrase": "Face to face bifurcated interface",
             "bs": "e-enable strategic applications"
             }
@@ -107,7 +107,7 @@ class Usuarios{
             "phone": "493-170-9623 x156",
             "website": "kale.biz",
             "company": {
-            "name": "Robel-Corkery",
+            "Cname": "Robel-Corkery",
             "catchPhrase": "Multi-tiered zero tolerance productivity",
             "bs": "transition cutting-edge web services"
             }
@@ -130,7 +130,7 @@ class Usuarios{
             "phone": "(254)954-1289",
             "website": "demarco.info",
             "company": {
-            "name": "Keebler LLC",
+            "Cname": "Keebler LLC",
             "catchPhrase": "User-centric fault-tolerant solution",
             "bs": "revolutionize end-to-end systems"
             }
@@ -153,7 +153,7 @@ class Usuarios{
             "phone": "1-477-935-8478 x6430",
             "website": "ola.org",
             "company": {
-            "name": "Considine-Lockman",
+            "Cname": "Considine-Lockman",
             "catchPhrase": "Synchronised bottom-line interface",
             "bs": "e-enable innovative applications"
             }
@@ -176,7 +176,7 @@ class Usuarios{
             "phone": "210.067.6132",
             "website": "elvis.io",
             "company": {
-            "name": "Johns Group",
+            "Cname": "Johns Group",
             "catchPhrase": "Configurable multimedia task-force",
             "bs": "generate enterprise e-tailers"
             }
@@ -188,30 +188,23 @@ class Usuarios{
     }
 
     buscarUser(Usrnme){
+        const tabla2 = document.getElementById('tabla_Src');
         for (let i=0; i < this.datos.length; i++){
-            if(this.datos[i].nombreUs == Usrnme){
-                return this.datos[i];
+            if(this.datos[i].username == Usrnme){
+                tabla2.innerHTML+=`
+                        <th>${this.datos[i].id}</th>
+                        <th>${this.datos[i].name}</th>
+                        <th>${this.datos[i].username}</th>
+                        <th>${this.datos[i].email}</th>
+                        <th>${this.datos[i].phone}</th>
+                        <th>${this.datos[i].website}</th>
+                        <th>${this.datos[i].street}</th>
+                        <th>${this.datos[i].Cname}</th>
+                    `
+                return(true);
             }
         }
         return null;
     }
 
-    // listarUsers(){
-    //     const tabla = document.getElementById('tabla-usuarios');
-    //     const tbody = tabla.getElementsByTagName('tbody')[0];
-
-    //     for (let i = 0; i < usuarios.datos.length; i++) {
-    //     const usuario = usuarios.datos[i];
-        
-    //     const fila = tbody.insertRow(i);
-    //     fila.insertCell(0).innerHTML = usuario.id;
-    //     fila.insertCell(1).innerHTML = usuario.name;
-    //     fila.insertCell(2).innerHTML = usuario.username;
-    //     fila.insertCell(3).innerHTML = usuario.email;
-    //     fila.insertCell(4).innerHTML = usuario.phone;
-    //     fila.insertCell(5).innerHTML = usuario.website;
-    //     fila.insertCell(6).innerHTML = usuario.address.street + ', ' + usuario.address.suite + ', ' + usuario.address.city + ', ' + usuario.address.zipcode;
-    //     fila.insertCell(7).innerHTML = usuario.company.name + ' - ' + usuario.company.catchPhrase + ' - ' + usuario.company.bs;
-    //     }
-    // }
 }
